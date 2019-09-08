@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .sp{padding:5px; border:solid 1px pink; background-color: aquamarine; margin-top: 10px}
+    a:link, a:visited{text-decoration: none; background-color: blue; padding:3px; text-align: center; color: yellow }
+    a.abc{background-color: brown}
+    .trang{padding:3px; background-color: chartreuse; float: left; margin-right: 5px}
+    </style>
+    <script src="http://localhost:3000/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".trang").click(function(){
+                var t = $(this).attr("trang");
+                $.get("http://localhost:3000/ajax/" + t, function(data){
+                    $("#noidung").html(data);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <% for(var t=1; t<=TongTrang; t++){ %>
+    <a <% if(t==DangXem){ %> class="abc" <% } %> 
+    href="./<%- t %>">
+        <%- t %>
+    </a>        
+    <% }; %>
+ - 
+
+    <% for(var t=1; t<=TongTrang; t++){ %>
+        
+        <div class="trang" trang="<%- t %>">
+            <%- t %>
+        </div>     
+        <% }; %>
+
+    <div id="noidung">
+        <% Mang.forEach(function(sp){ %>
+        <div class="sp"> <%- sp.Ten %></div>    
+        <% }); %>
+    </div>
+
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/aJOTlE1K90k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    
+    
+
+
+</body>
+</html>
